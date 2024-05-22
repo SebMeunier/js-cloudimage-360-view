@@ -23,12 +23,12 @@
   ],
   "scripts": {
     "start-demo": "webpack-dev-server --mode development --config config/webpack-demo.config.js",
-    "clean:build": "rm -rf build",
+    "clean:build": "node -e \"require('fs-extra').remove('build')",
     "build:bundle": "npm run clean:build && webpack --mode production --config config/webpack-build.config.js",
     "deploy:bundle": "npm run build:bundle && node bin/deploy-bundle",
-    "clean:dist": "rm -rf dist",
+    "clean:dist": "node -e \"require('fs-extra').remove('dist/')",
     "dist": "npm run clean:dist && babel src -d dist --copy-files",
-    "clean:demo": "rm -rf examples/dist",
+    "clean:demo": "node -e \"require('fs-extra').remove('examples/dist')",
     "build:demo": "npm run clean:demo && webpack --mode production  --config config/webpack-demo.config.js",
     "deploy:demo": "gh-pages -d examples/dist",
     "publish:demo": "npm run build:demo && npm run deploy:demo"
@@ -61,7 +61,7 @@
     "mobile-detect": "^1.4.3",
     "style-loader": "^3.3.2",
     "webpack": "^5.79.0",
-    "webpack-cli": "^5.0.1",
+    "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.13.3"
   }
 }
